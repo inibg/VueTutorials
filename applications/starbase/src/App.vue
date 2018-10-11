@@ -18,7 +18,7 @@
     data() {
       return {
         title: 'Generate Your Team',
-        initial_ids: [1, 13, 14]
+        initial_ids: [1, 10, 14]
       }
     },
     components: {
