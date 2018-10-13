@@ -4,10 +4,20 @@
     <button class="btn btn-primary" @click="initJokes">Add ten random jokes</button>
     <button class="btn btn-primary" @click="addJoke">Add one random jokes</button>
     <br>
+    <span v-for="(type, index) in types" :key="index">
+      <input
+       type="checkbox" 
+       :value="type" 
+       v-model="checkedTypes"
+       checked
+      >
+      <label>{{type}}</label>&nbsp;
+    </span>
     <br>
     <div class="col-md-12">
       <Joke
         v-for="(joke, index) in $store.state.jokes"
+        v-show="checkedTypes.includes(joke.type)"
         :key="index"
         :index="index"
         :joke="joke"
@@ -23,6 +33,12 @@
 import { mapActions } from 'vuex'
 import Joke from './Joke.vue'
 export default {
+  data() {
+    return {
+      types: [ 'general', 'knock-knock', 'programming' ],
+      checkedTypes: [ 'general', 'knock-knock', 'programming' ]
+    }
+  },
   methods: mapActions([
     'initJokes',
     'addJoke',
